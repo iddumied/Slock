@@ -22,6 +22,9 @@
 #include <bsd_auth.h>
 #endif
 
+// backlight patch
+#include "backlight.c"
+
 static void
 die(const char *errstr, ...) {
 	va_list ap;
@@ -62,6 +65,8 @@ get_password() { /* only run as root */
 
 int
 main(int argc, char **argv) {
+  backlight_of();
+  
 	char curs[] = {0, 0, 0, 0, 0, 0, 0, 0};
 	char buf[32], passwd[256];
 	int num, screen;
@@ -174,5 +179,6 @@ main(int argc, char **argv) {
 	XFreePixmap(dpy, pmap);
 	XDestroyWindow(dpy, w);
 	XCloseDisplay(dpy);
+  backlight_on();
 	return 0;
 }
