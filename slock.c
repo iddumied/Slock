@@ -65,9 +65,7 @@ get_password() { /* only run as root */
 
 int
 main(int argc, char **argv) {
-  backlight_of();
-  
-	char curs[] = {0, 0, 0, 0, 0, 0, 0, 0};
+  char curs[] = {0, 0, 0, 0, 0, 0, 0, 0};
 	char buf[32], passwd[256];
 	int num, screen;
 
@@ -88,8 +86,10 @@ main(int argc, char **argv) {
 	if((argc == 2) && !strcmp("-v", argv[1]))
 		die("slock-"VERSION", © 2006-2008 Anselm R Garbe\n");
 	else if(argc != 1)
-		die("usage: slock [-v]\n");
-
+		die("usage: slock [-vb]\n");
+  
+  backlight_of();
+  
 #ifndef HAVE_BSD_AUTH
 	pws = get_password();
 #endif

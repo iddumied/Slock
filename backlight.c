@@ -1,8 +1,6 @@
 void backlight_of();
 void backlight_on();
 
-static Bool backlight;
-
 
 void backlight_of()
 {
